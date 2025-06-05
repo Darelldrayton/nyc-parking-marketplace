@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkNYC - Find & Rent Parking Spaces in New York City</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'nyc-blue': '#1e40af',
+                        'nyc-yellow': '#fbbf24',
+                        'nyc-gray': '#6b7280'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/lucide.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+        }
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-nyc-blue">ParkNYC</h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#how-it-works" class="text-gray-700 hover:text-nyc-blue px-3 py-2 text-sm font-medium transition">How it Works</a>
+                        <a href="#features" class="text-gray-700 hover:text-nyc-blue px-3 py-2 text-sm font-medium transition">Features</a>
+                        <a href="#pricing" class="text-gray-700 hover:text-nyc-blue px-3 py-2 text-sm font-medium transition">Pricing</a>
+                        <button class="bg-nyc-blue text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition">
+                            Join Waitlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg hero-pattern pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <div class="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
+                    <span class="pulse-dot w-2 h-2 bg-nyc-yellow rounded-full mr-2"></span>
+                    <span class="text-white text-sm font-medium">Coming Soon to NYC</span>
+                </div>
+                
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                    Park Smarter in<br>
+                    <span class="text-nyc-yellow">New York City</span>
+                </h1>
+                
+                <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+                    The Airbnb for parking spaces. Find affordable parking or earn money from your unused driveway, garage, or private lot.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                    <button class="bg-white text-nyc-blue px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-50 transition shadow-lg w-full sm:w-auto">
+                        🚗 Find Parking
+                    </button>
+                    <button class="bg-nyc-yellow text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-300 transition shadow-lg w-full sm:w-auto">
+                        💰 List Your Space
+                    </button>
+                </div>
+
+                <!-- Borough Pills -->
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm">Manhattan</div>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm">Brooklyn</div>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm">Queens</div>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm">The Bronx</div>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm">Staten Island</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-white py-16 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-3xl font-bold text-nyc-blue mb-2">1M+</div>
+                    <div class="text-gray-600">Parking Searches Daily</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-nyc-blue mb-2">$35</div>
+                    <div class="text-gray-600">Average Daily Parking Cost</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-nyc-blue mb-2">45min</div>
+                    <div class="text-gray-600">Average Time Finding Parking</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-nyc-blue mb-2">5 Boroughs</div>
+                    <div class="text-gray-600">Complete NYC Coverage</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How ParkNYC Works</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Simple, secure, and efficient parking for everyone</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- For Renters -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">🚗 For Parking Seekers</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-nyc-blue text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Search by Location</h4>
+                                <p class="text-gray-600">Browse available parking spaces by borough, neighborhood, or specific address using our interactive map.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-nyc-blue text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Book & Pay Securely</h4>
+                                <p class="text-gray-600">Reserve your spot instantly with secure payment processing. Get confirmation and parking details immediately.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-nyc-blue text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">3</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Park & Go</h4>
+                                <p class="text-gray-600">Arrive at your reserved space and park with confidence. Rate your experience to help others.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- For Hosts -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">🏠 For Space Owners</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-nyc-yellow text-gray-900 rounded-full w-10 h-10 flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">List Your Space</h4>
+                                <p class="text-gray-600">Upload photos and details of your parking space. Set your rates and availability schedule.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-nyc-yellow text-gray-900 rounded-full w-10 h-10 flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Get Booked</h4>
+                                <p class="text-gray-600">Receive booking requests and communicate with renters through our secure messaging system.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-nyc-yellow text-gray-900 rounded-full w-10 h-10 flex items-center justify-center font-bold">3</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-2">Earn Money</h4>
+                                <p class="text-gray-600">Get paid automatically after each successful parking session. Track your earnings in real-time.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Built for NYC</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Every feature designed with New York City's unique parking challenges in mind</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl p-8 card-hover">
+                    <div class="bg-nyc-blue text-white rounded-lg w-12 h-12 flex items-center justify-center mb-6">
+                        📍
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Interactive Map Search</h3>
+                    <p class="text-gray-600">Find parking spaces near your destination with real-time availability and pricing.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-8 card-hover">
+                    <div class="bg-nyc-blue text-white rounded-lg w-12 h-12 flex items-center justify-center mb-6">
+                        🔒
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Verified Hosts & Renters</h3>
+                    <p class="text-gray-600">All users verified with driver's license and insurance for maximum safety and trust.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-8 card-hover">
+                    <div class="bg-nyc-blue text-white rounded-lg w-12 h-12 flex items-center justify-center mb-6">
+                        💳
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Secure Payments</h3>
+                    <p class="text-gray-600">Contactless payments with instant receipts and automatic payouts to hosts.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-8 card-hover">
+                    <div class="bg-nyc-yellow text-gray-900 rounded-lg w-12 h-12 flex items-center justify-center mb-6">
+                        📱
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Mobile-First Design</h3>
+                    <p class="text-gray-600">Find and book parking on-the-go with our fast, intuitive mobile experience.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-8 card-hover">
+                    <div class="bg-nyc-yellow text-gray-900 rounded-lg w-12 h-12 flex items-center justify-center mb-6">
+                        💬
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">In-App Messaging</h3>
+                    <p class="text-gray-600">Communicate directly with hosts for special instructions or questions.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-xl p-8 card-hover">
+                    <div class="bg-nyc-yellow text-gray-900 rounded-lg w-12 h-12 flex items-center justify-center mb-6">
+                        ⭐
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">Reviews & Ratings</h3>
+                    <p class="text-gray-600">Two-way review system helps build trust and improve experiences for everyone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="gradient-bg py-20">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Ready to Transform NYC Parking?
+            </h2>
+            <p class="text-xl text-blue-100 mb-8">
+                Join thousands of New Yorkers who are already making parking easier and more affordable.
+            </p>
+            
+            <div class="bg-white rounded-2xl p-8 max-w-md mx-auto">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-6">Join the Waitlist</h3>
+                <form class="space-y-4">
+                    <input type="email" placeholder="Enter your email" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nyc-blue focus:border-transparent">
+                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-nyc-blue focus:border-transparent">
+                        <option>Select your borough</option>
+                        <option>Manhattan</option>
+                        <option>Brooklyn</option>
+                        <option>Queens</option>
+                        <option>The Bronx</option>
+                        <option>Staten Island</option>
+                    </select>
+                    <div class="flex gap-4">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span class="text-sm text-gray-600">Looking for parking</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-2">
+                            <span class="text-sm text-gray-600">Want to rent my space</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="w-full bg-nyc-blue text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                        Get Early Access
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">ParkNYC</h3>
+                    <p class="text-gray-400">Making parking simple, secure, and affordable across all five boroughs.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">How it Works</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition">Safety</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 ParkNYC. All rights reserved. Made with ❤️ in NYC.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple email collection
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for joining our waitlist! We\'ll notify you when ParkNYC launches in your borough.');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
